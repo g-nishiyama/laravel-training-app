@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// ArticleControllerクラスをインポート
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,6 @@ Route::get('/', function () {
     //"hello.blade.php"を渡して画面表示
     return view('hello');
 });
+
+// URL(/articles)にアクセスした際に、ArticleControllerクラスのindexメソッドを実行。この定義に"articles.index"と名前設定
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
