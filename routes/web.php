@@ -20,5 +20,9 @@ Route::get('/', function () {
     return view('hello');
 });
 
-// URL(/articles)にアクセスした際に、ArticleControllerクラスのindexメソッドを実行。この定義に"articles.index"と名前設定
+// URL(/articles)にGETリクエストでアクセスした際に、ArticleControllerクラスのindexメソッドを実行。この定義に"articles.index"と名前設定
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+// URL(/articles/create)にGETリクエストでアクセスした際に、ArticleControllerクラスのcreateメソッドを実行。この定義に"articles.create"と名前設定
+Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
+// URL(/articles)にPOSTリクエストでアクセスした際に、ArticleControllerクラスのstoreメソッドを実行。この定義に"articles.store"と名前設定
+Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');

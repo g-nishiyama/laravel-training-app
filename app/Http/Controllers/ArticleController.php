@@ -29,7 +29,13 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        // 引用元：「4.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-4
+        // Articleクラスをインスタンス化
+        $article = new Article();
+        // キーarticle、値$articleの連想配列を格納
+        $data = ['article' => $article];
+        // articles.createのviewに連想配列データを渡す（viewファイルの配置場所が深い場合はその分ドットで繋げて指定する、スラッシュで区切ることもできる）
+        return view('articles.create', $data);
     }
 
     /**

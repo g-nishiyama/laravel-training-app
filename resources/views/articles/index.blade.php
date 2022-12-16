@@ -13,6 +13,8 @@
         <div class="site-title">ミニブログ</div>
     </header>
     <main class="container">
+        {{--  投稿ページへのリンク表示  --}}
+        <p><a href="{{ route('articles.create') }}">記事を書く</a></p>
         {{--  繰り返し処理（$articlesからキーと値のデータを１つずつ取り出し$articleへ格納）  --}}
         @foreach ($articles as $article)
         <article class="article-item">
