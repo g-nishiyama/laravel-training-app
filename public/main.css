@@ -28,3 +28,10 @@ footer {
     font-size: .9rem;
     color: #777;
 }
+/* バリデーションメッセージ装飾 */
+ul.alert {
+    padding: 15px 15px 15px 40px;
+    border-radius: 4px;
+    background: #f8d6d9;
+    color: #721c24;
+}

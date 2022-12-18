@@ -9,7 +9,9 @@
 @csrf
 <dl class="form-list">
     <dt>タイトル</dt>
-    <dd><input type="text" name="title"></dd>
+    {{--  バリデーションエラーの際に入力値保持のため、ヘルパ関数old()をvalue属性に設定  --}}
+    <dd><input type="text" name="title" value="{{ old('title')}}"></dd>
     <dt>本文</dt>
-    <dd><textarea name="body" rows="5"></textarea></dd>
+    {{--  バリデーションエラーの際に入力値保持のため、textarea要素の場合はヘルパ関数old()をテキスト文として設定  --}}
+    <dd><textarea name="body" rows="5">{{ old('body') }}</textarea></dd>
 </dl>

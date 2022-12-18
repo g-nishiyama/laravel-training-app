@@ -3,6 +3,8 @@
 @extends('layouts.app')
 {{--  @sectionディレクティブ　テンプレートファイル(app.blade.php)の@yield(content)部分に埋め込む処理範囲を設定  --}}
 @section('content')
+{{--  @includeディレクティブ　切り分けたサブビュー(commonsフォルダのerrors.blade.php)を読み込み  --}}
+@include('commons.errors')
 {{--  フォーム入力内容をweb.phpに設定されたルーティングarticles.store(ArticleControllernのstoreメソッド)へPOSTメソッドで送信する  --}}
 <form action="{{ route('articles.store') }}" method="post">
     {{--  @includeディレクティブ　切り分けたサブビュー(articlesフォルダのform.blade.php)を読み込み  --}}
