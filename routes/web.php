@@ -26,3 +26,5 @@ Route::get('/articles', [ArticleController::class, 'index'])->name('articles.ind
 Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
 // URL(/articles)にPOSTリクエストでアクセスした際に、ArticleControllerクラスのstoreメソッドを実行。この定義に"articles.store"と名前設定
 Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
+// URL(/articles/{article})の{article}部分に記事の主キーであるidを添えてGETリクエストでアクセスした際に、ArticleControllerクラスのshowメソッドを実行。この定義に"articles.show"と名前設定
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');

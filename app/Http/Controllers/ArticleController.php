@@ -75,9 +75,13 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
+    // タイプヒンティング(引数の型指定)でArticleインスタンスを引数経由で受けとりビューに渡す
     public function show(Article $article)
     {
-        //
+        // キーarticle、値$articleの連想配列を格納
+        $data = ['article' => $article];
+        // articles.showのviewに連想配列データを渡す
+        return view('articles.show', $data);
     }
 
     /**

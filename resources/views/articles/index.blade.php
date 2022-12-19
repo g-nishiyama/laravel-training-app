@@ -8,10 +8,15 @@
 {{--  繰り返し処理（$articlesからキーと値のデータを１つずつ取り出し$articleへ格納）  --}}
 @foreach ($articles as $article)
 <article class="article-item">
-    {{--  $articleのtitleキーの値を表示  --}}
-    <div class="article-title">{{ $article->title }}</div>
-    {{--  $articleのbodyキーの値を表示  --}}
-    <div class="article-body">{{ $article->body }}</div>
+    {{--  $articleのtitleキーの値をリンクとして表示  --}}
+    <div class="article-title">
+        {{--  route()関数でURLにarticles.showを設定し、引数として$articleのidをパスパラメータに設定。画面表示はリンク表示でタイトルを表示
+            引用元：「5.記事の詳細と編集」https://newmonz.jp/lesson/laravel-basic/chapter-5
+        --}}
+        <a href="{{ route('articles.show', $article) }}">{{ $article->title }}</a>
+    </div>
+    {{--  $articleのcreated_atキーの値を表示  --}}
+    <div class="article-info">{{ $article->created_at }}</div>
 </article>
 {{--  @foreach閉じタグ  --}}
 @endforeach
