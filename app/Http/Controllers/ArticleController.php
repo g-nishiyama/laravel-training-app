@@ -135,6 +135,10 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        // 引用元：「6.記事の削除」https://newmonz.jp/lesson/laravel-basic/chapter-6
+        // delete()メソッドで$article値を削除
+        $article->delete();
+        // ルートarticles.indexへリダイレクト
+        return redirect(route('articles.index'));
     }
 }

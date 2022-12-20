@@ -46,3 +46,8 @@ ul.alert {
     border-top: 1px dotted #ddd;
     border-bottom: 1px dotted #ddd;
 }
+/* 編集ボタンと削除ボタン横並び用 */
+.article-control {
+    display: flex;
+    justify-content: space-between;
+}

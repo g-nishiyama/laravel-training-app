@@ -21,6 +21,16 @@
     <div class="article-control">
         {{--  編集画面へのリンクを表示(web.phpに設定されたルーティングarticles.edit(ArticleControllerのeditメソッド))  --}}
         <a href="{{ route('articles.edit', $article) }}">編集</a>
+        {{--  削除のリンクを表示（web.phpに設定されたルーティングarticles.destroy(ArticleControllernのdestroyメソッド)へPOSTメソッドで送信する  --}}
+        {{--  引用元：「6.記事の削除」https://newmonz.jp/lesson/laravel-basic/chapter-6  --}}
+        {{--  onsubmitはフォーム送信された時にスクリプトを実行するため、javascriptのconfirmメソッドで確認ダイアログを表示（OKはtrueを返し送信,キャンセルはfalseを返し送信しない）  --}}
+        <form onsubmit="return confirm('本当に削除しますか？')" action="{{ route('articles.destroy', $article) }}" method="post">
+            {{--  不正リクエスト（クロス・サイト・リクエスト・フォージェリ(CSRF)）からアプリケーションを保護  --}}
+            @csrf 
+            {{--  @methodディレクティブ 隠しパラメータでdeleteメソッドを送信  --}}
+            @method('delete')
+            <button type="submit">削除</button>
+        </form>
     </div>
 </article>
 @endsection
