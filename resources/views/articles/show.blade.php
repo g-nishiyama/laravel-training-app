@@ -18,5 +18,9 @@
                     さようなら」
       --}}
     <div class="article-body">{!! nl2br(e($article->body)) !!}</div>
+    <div class="article-control">
+        {{--  編集画面へのリンクを表示(web.phpに設定されたルーティングarticles.edit(ArticleControllerのeditメソッド))  --}}
+        <a href="{{ route('articles.edit', $article) }}">編集</a>
+    </div>
 </article>
 @endsection

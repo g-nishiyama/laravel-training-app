@@ -92,7 +92,10 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        // キーarticle、値$articleの連想配列を格納
+        $data = ['article' => $article];
+        // articles.editのviewに連想配列データを渡す
+        return view('articles.edit', $data);
     }
 
     /**
@@ -104,7 +107,24 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        // 引用元：「5.記事の詳細と編集」https://newmonz.jp/lesson/laravel-basic/chapter-5
+        // バリデーションチェック(updateアクションに渡された$requestに格納されている値が定義に合っていることを確認する)
+        $this->validate($request, [
+            // チェック項目としてtitleが未入力ではないこと、最大文字数は255文字以内であることを定義
+            'title' => 'required|max:255',
+            // チェック項目としてbodyは未入力ではないことを定義
+            'body' => 'required'
+        ]);
+        // $articleのプロパティtitleにフォームから送信されたtitleの値を代入
+        $article->title = $request->title;
+        // $articleのプロパティbodyにフォームから送信されたbodyの値を代入
+        $article->body = $request->body;
+        // $articleプロパティにセットされた値を保存してレコード追加
+        $article->save();
+        // 詳細画面へリダイレクト（ページ遷移）
+        // web.phpに記載したルーティングarticles.showへリダイレクト
+        // 画面表示のときは「return view()」、登録更新削除の場合は「return redirect()」を使う
+        return redirect(route('articles.show', $article));
     }
 
     /**

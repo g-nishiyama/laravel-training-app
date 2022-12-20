@@ -1,4 +1,5 @@
 {{--  引用元：「4.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-4  --}}
+{{--  引用元：「5.記事の詳細と編集」https://newmonz.jp/lesson/laravel-basic/chapter-5  --}}
 {{--  登録・編集では画面構成が似ているためサブビューとしてフォーム部分を切り分け  --}}
 
 {{--  不正リクエスト（クロス・サイト・リクエスト・フォージェリ(CSRF)）からアプリケーションを保護
@@ -9,9 +10,9 @@
 @csrf
 <dl class="form-list">
     <dt>タイトル</dt>
-    {{--  バリデーションエラーの際に入力値保持のため、ヘルパ関数old()をvalue属性に設定  --}}
-    <dd><input type="text" name="title" value="{{ old('title')}}"></dd>
+    {{--  バリデーションエラーの際に入力値保持のため、ヘルパ関数old()をvalue属性に設定。第二引数にプロパティを指定することでデフォルト値として画面表示する  --}}
+    <dd><input type="text" name="title" value="{{ old('title', $article->title) }}"></dd>
     <dt>本文</dt>
-    {{--  バリデーションエラーの際に入力値保持のため、textarea要素の場合はヘルパ関数old()をテキスト文として設定  --}}
-    <dd><textarea name="body" rows="5">{{ old('body') }}</textarea></dd>
+    {{--  バリデーションエラーの際に入力値保持のため、textarea要素の場合はヘルパ関数old()をテキスト文として設定。第二引数にプロパティを指定することでデフォルト値として画面表示する  --}}
+    <dd><textarea name="body" rows="5">{{ old('body', $article->body) }}</textarea></dd>
 </dl>
