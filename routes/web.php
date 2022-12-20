@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 // ArticleControllerクラスをインポート
 use App\Http\Controllers\ArticleController;
+// HomeControllerクラスをインポート
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +18,22 @@ use App\Http\Controllers\ArticleController;
 */
 
 Route::get('/', function () {
-    //"hello.blade.php"を渡して画面表示
-    return view('hello');
+    return view('welcome');
 });
 
-// resource()メソッドで定義したルーティングをリソースルートと呼ぶ。リソースをCRUDするつの基本ルーティングの省略形で、これを記載することで基本ルーティングが自動的に作成される
-// 特定のメソッドだけを除外する場合は下記のように第二引数へexceptを使って記述することで除外できる
-//      Route::resource('/articles', ArticleController::class, ['except' => ['show']]);
-// 特定のメソッドだけを指定して設定する場合は下記のように第二引数へonlyを使って記述することで指定できる
-//    Route::resource('/articles', ArticleController::class, ['only' => ['index', 'store', 'destroy']]);
-Route::resource('/articles', ArticleController::class);
+// グループ化してURIのprefixをミドルウェアのauthに設定（ログイン済の場合に限り中のルーティングへのアクセスが出来る）
+Route::group(['middleware' => ['auth']], function () {
+    // URL(/home)にGETリクエストでアクセスした際に、HomeControllerクラスのindexメソッドを実行。この定義に"home"と名前設定
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    // resource()メソッドで定義したルーティングをリソースルートと呼ぶ。リソースをCRUDするつの基本ルーティングの省略形で、これを記載することで基本ルーティングが自動的に作成される
+    // 特定のメソッドだけを除外する場合は下記のように第二引数へexceptを使って記述することで除外できる
+    //      Route::resource('/articles', ArticleController::class, ['except' => ['show']]);
+    // 特定のメソッドだけを指定して設定する場合は下記のように第二引数へonlyを使って記述することで指定できる
+    //    Route::resource('/articles', ArticleController::class, ['only' => ['index', 'store', 'destroy']]);
+    Route::resource('/articles', ArticleController::class);
+});
+
+
 
 
 // // URL(/articles)にGETリクエストでアクセスした際に、ArticleControllerクラスのindexメソッドを実行。この定義に"articles.index"と名前設定
