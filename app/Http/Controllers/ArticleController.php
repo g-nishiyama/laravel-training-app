@@ -56,6 +56,10 @@ class ArticleController extends Controller
         ]);
         // Articleクラスをインスタンス化
         $article = new Article();
+        // 引用元：「8.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-8
+        // $articleのuser_idプロパティにAuthファサードで取得したログインユーザーのidを代入
+        // ※Authファサードとコントローラは別の名前空間にあるためバックスラッシュを付けた絶対パスで指定する必要がある
+        $article->user_id = \Auth::id();
         // $articleのプロパティtitleにフォームから送信されたtitleの値を代入
         $article->title = $request->title;
         // $articleのプロパティbodyにフォームから送信されたbodyの値を代入
@@ -92,6 +96,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        // 引用元：「8.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-8
+        // アクセス権限ポリシーを適用
+        $this->authorize($article);
         // キーarticle、値$articleの連想配列を格納
         $data = ['article' => $article];
         // articles.editのviewに連想配列データを渡す
@@ -107,6 +114,9 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        // 引用元：「8.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-8
+        // アクセス権限ポリシーを適用
+        $this->authorize($article);
         // 引用元：「5.記事の詳細と編集」https://newmonz.jp/lesson/laravel-basic/chapter-5
         // バリデーションチェック(updateアクションに渡された$requestに格納されている値が定義に合っていることを確認する)
         $this->validate($request, [
@@ -135,6 +145,9 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        // 引用元：「8.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-8
+        // アクセス権限ポリシーを適用
+        $this->authorize($article);
         // 引用元：「6.記事の削除」https://newmonz.jp/lesson/laravel-basic/chapter-6
         // delete()メソッドで$article値を削除
         $article->delete();

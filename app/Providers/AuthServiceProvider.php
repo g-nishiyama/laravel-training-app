@@ -12,8 +12,10 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array<class-string, class-string>
      */
+    // 引用元：「8.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-8
+    // 作成したArticlePolicyをAuthServiceProviderのポリシーに登録
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\Model' => 'App\Policies\ArticlePolicy',
     ];
 
     /**

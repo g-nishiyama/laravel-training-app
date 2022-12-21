@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Articleとの一対多のリレーションメソッドを定義
+     *
+     * 引用元：「8.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-8
+    */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

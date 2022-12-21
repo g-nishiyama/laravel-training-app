@@ -18,6 +18,9 @@
                     さようなら」
       --}}
     <div class="article-body">{!! nl2br(e($article->body)) !!}</div>
+    {{--  引用元：「8.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-8  --}}
+    {{--  canディレクティブ　この記事のupdateポリシーがtrueの場合に以降を表示する  --}}
+    @can('update', $article)
     <div class="article-control">
         {{--  編集画面へのリンクを表示(web.phpに設定されたルーティングarticles.edit(ArticleControllerのeditメソッド))  --}}
         <a href="{{ route('articles.edit', $article) }}">編集</a>
@@ -26,11 +29,12 @@
         {{--  onsubmitはフォーム送信された時にスクリプトを実行するため、javascriptのconfirmメソッドで確認ダイアログを表示（OKはtrueを返し送信,キャンセルはfalseを返し送信しない）  --}}
         <form onsubmit="return confirm('本当に削除しますか？')" action="{{ route('articles.destroy', $article) }}" method="post">
             {{--  不正リクエスト（クロス・サイト・リクエスト・フォージェリ(CSRF)）からアプリケーションを保護  --}}
-            @csrf 
+            @csrf
             {{--  @methodディレクティブ 隠しパラメータでdeleteメソッドを送信  --}}
             @method('delete')
             <button type="submit">削除</button>
         </form>
     </div>
+    @endcan
 </article>
 @endsection
