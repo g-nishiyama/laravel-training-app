@@ -14,8 +14,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        // モデルクラスのArticleのスタティックメソッド all() を呼び出し（articlesテーブルから全データ取得）
-        $articles = Article::all();
+        // articlesテーブルから作成日を降順にソートしてページネーションで1ページ10件に区切ったデータを取得
+        $articles = Article::orderBy('created_at', 'desc')->paginate(10);
         // 取得した記事データをキー'articles'の連想配列に格納
         $data = ['articles' => $articles];
         // articles.indexのviewに連想配列データを渡す
@@ -153,5 +153,23 @@ class ArticleController extends Controller
         $article->delete();
         // ルートarticles.indexへリダイレクト
         return redirect(route('articles.index'));
+    }
+
+    /**
+     * ブックマークした記事の一覧を取得するメソッド定義
+     *
+     * 引用元：「9.記事のブックマーク」https://newmonz.jp/lesson/laravel-basic/chapter-9
+     */
+    public function bookmark_articles()
+    {
+        // ログインユーザーがブックマークした記事を日付を降順にソートして、ページネーションで1ページあたり10件に区切ったデータを取得
+        // ※paginate() の場合は記事のコレクションだけでなくページ情報も含めて保持しているページネータオブジェクトを取得する。
+        $articles = \Auth::user()->bookmark_articles()->orderBy('created_at', 'desc')->paginate(10);
+        // 取得した記事データをarticlesをキーとした連想配列に格納
+        $data = [
+            'articles' => $articles,
+        ];
+        // articles.bookmarksのviewに連想配列データを渡す
+        return view('articles.bookmarks', $data);
     }
 }

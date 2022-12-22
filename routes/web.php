@@ -31,6 +31,13 @@ Route::group(['middleware' => ['auth']], function () {
     // 特定のメソッドだけを指定して設定する場合は下記のように第二引数へonlyを使って記述することで指定できる
     //    Route::resource('/articles', ArticleController::class, ['only' => ['index', 'store', 'destroy']]);
     Route::resource('/articles', ArticleController::class);
+
+    // URL(/articles/{article}/bookmark)の{article}部分に記事の主キーであるidを添えてPOSTリクエストでアクセスした際に、BookmarkControllerクラスのstoreメソッドを実行。この定義に"bookmark.store"と名前設定
+    Route::post('/articles/{article}/bookmark', [BookmarkController::class, 'store'])->name('bookmark.store');
+    // URL(/articles/{article}/unbookmark)の{article}部分に記事の主キーであるidを添えてPOSTリクエスト(実際はdelete)でアクセスした際に、BookmarkControllerクラスのdestroyメソッドを実行。この定義に"bookmark.destroy"と名前設定
+    Route::delete('/articles/{article}/unbookmark', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
+    // URL(/bookmarks)にGETリクエストでアクセスした際に、ArticleControllerクラスのbookmark_articlesメソッドを実行。この定義に"bookmarks"と名前設定
+    Route::get('/bookmarks', [ArticleController::class, 'bookmark_articles'])->name('bookmarks');
 });
 
 

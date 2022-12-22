@@ -19,6 +19,8 @@
                 <li><a class="tab-item{{ Request::is('home') ? ' active' : ''}}" href="{{ route('home') }}">マイページ</a></li>
                 {{--  ログイン済みの場合、記事検索へのリンク表示  --}}
                 <li><a class="tab-item{{ Request::is('articles') ? ' active' : ''}}" href="{{ route('articles.index') }}">記事検索</a></li>
+                {{--  ログイン済みの場合、ブックマークへのリンク表示  --}}
+                <li><a class="tab-item{{ Request::is('bookmarks') ? ' active' : ''}}" href="{{ route('bookmarks') }}">ブックマーク</a></li>
                 <li>
                     {{--  ログイン済みの場合、ログアウトボタンを表示　ログアウトボタン押下した場合は確認画面を表示  --}}
                     <form on-submit="return confirm('ログアウトしますか？')" action="{{ route('logout') }}" method="post">
