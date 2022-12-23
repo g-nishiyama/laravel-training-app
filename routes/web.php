@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 // HomeControllerクラスをインポート
 use App\Http\Controllers\HomeController;
+// BookmarkControllerクラスをインポート
+use App\Http\Controllers\BookmarkController;
 
 /*
 |--------------------------------------------------------------------------
