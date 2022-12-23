@@ -10,21 +10,31 @@
 <form action="{{ route('register') }}" method="post">
     {{--  不正リクエスト（クロス・サイト・リクエスト・フォージェリ(CSRF)）からアプリケーションを保護  --}}
     @csrf
-    <dl class="form-list">
-        <dt>名前</dt>
-        {{--  名前入力フォーム表示  --}}
-        <dd><input type="text" name="name" value="{{ old('name') }}"></dd>
-        <dt>メールアドレス</dt>
-        {{--  メールアドレス入力フォーム表示  --}}
-        <dd><input type="email" name="email" value="{{ old('email') }}"></dd>
-        <dt>パスワード</dt>
-        {{--  パスワード入力フォーム表示  --}}
-        <dd><input type="password" name="password"></dd>
-        <dt>パスワード（確認用）</dt>
-        {{--  確認用パスワード入力フォーム表示  --}}
-        <dd><input type="password" name="password_confirmation" placeholder="もう一度入力"></dd>
-    </dl>
-<button type="submit">登録する</button>
-<a href="/">キャンセル</a>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <label for="FormControlName" class="form-label">名前</label>
+            <input type="text" class="form-control" id="FormControlName" name="name" value="{{ old('name') }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <label for="FormControlMail" class="form-label">メールアドレス</label>
+            <input type="email" class="form-control" id="FormControlMail" name="email" value="{{ old('email') }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <label for="FormControlPassword" class="form-label">パスワード</label>
+            <input type="password" class="form-control" id="FormControlPassword" name="password" value="{{ old('password') }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <label for="FormControlPasswordConfirm" class="form-label">パスワード（確認用）</label>
+            <input type="password" class="form-control" id="FormControlPasswordConfirm" name="password_confirmation" placeholder="もう一度入力" value="{{ old('email') }}">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">登録する</button>
+    <a href="/">キャンセル</a>
 </form>
 @endsection()

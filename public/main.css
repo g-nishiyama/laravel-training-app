@@ -17,12 +17,9 @@ button:hover, .btn:hover {
 }
 /* ヘッダーにナビゲーションを配置出来るようにする */
 header {
-    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-    background: #4470b1;
     color: rgba(255, 255, 255, .7);
 }
 .site-title {

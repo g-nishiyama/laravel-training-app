@@ -14,7 +14,8 @@
         {{--  お気に入り登録ボタン表示（ブックマーク登録処理）  --}}
         <form action="{{ route('bookmark.store', $article) }}" method="post">
             @csrf
-            <button>お気に入り登録</button>
+            {{--  <button>お気に入り登録</button>  --}}
+            <button type="button" class="btn btn-primary">お気に入り登録</button>
         </form>
         @else
         {{--  お気に入り解除ボタン表示（ブックマーク削除処理）  --}}

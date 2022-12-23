@@ -7,16 +7,22 @@
 {{--  @includeディレクティブ　切り分けたサブビュー(commonsフォルダのerrors.blade.php)を読み込み  --}}
 @include('commons.errors')
 {{--  Fortifyが用意したルーティングloginへ入力したメールアドレス、パスワードをPOSTで送信  --}}
-<form action="{{ route('login') }}" method="post">
+<form class="mb-1" action="{{ route('login') }}" method="post">
     {{--  不正リクエスト（クロス・サイト・リクエスト・フォージェリ(CSRF)）からアプリケーションを保護  --}}
     @csrf 
-    <dl class="form-list">
-        <dt>メールアドレス</dt>
-        <dd><input type="email" name="email" value="{{ old('email') }}"></dd>
-        <dt>パスワード</dt>
-        <dd><input type="password" name="password"></dd>
-    </dl>
-    <button type="submit">ログイン</button>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <label for="FormControlMail" class="form-label">メールアドレス</label>
+            <input type="email" class="form-control" id="FormControlMail" name="email" value="{{ old('email') }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <label for="FormControlPassword" class="form-label">パスワード</label>
+            <input type="password" class="form-control" id="FormControlPassword" name="password">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">ログイン</button>
     <a href="/">キャンセル</a>
 </form>
 @endsection()
