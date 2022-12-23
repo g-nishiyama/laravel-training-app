@@ -8,11 +8,15 @@
         valueの値(ランダム生成のトークン)を含まないリクエストは不正として扱われる。
 --}}
 @csrf
-<dl class="form-list">
-    <dt>タイトル</dt>
-    {{--  バリデーションエラーの際に入力値保持のため、ヘルパ関数old()をvalue属性に設定。第二引数にプロパティを指定することでデフォルト値として画面表示する  --}}
-    <dd><input type="text" name="title" value="{{ old('title', $article->title) }}"></dd>
-    <dt>本文</dt>
-    {{--  バリデーションエラーの際に入力値保持のため、textarea要素の場合はヘルパ関数old()をテキスト文として設定。第二引数にプロパティを指定することでデフォルト値として画面表示する  --}}
-    <dd><textarea name="body" rows="5">{{ old('body', $article->body) }}</textarea></dd>
-</dl>
+<div class="row">
+    <div class="col-4 mb-3">
+        <label for="FormControlTitle" class="form-label">タイトル</label>
+        <input type="text" class="form-control" id="FormControlTitle" name="title" value="{{ old('title', $article->title) }}">
+    </div>
+</div>
+<div class="row">
+    <div class="col-4 mb-3">
+        <label for="FormControlBody" class="form-label">本文</label>
+        <textarea class="form-control" id="FormControlBody" name="body" rows="5">{{ old('body', $article->body) }}</textarea>
+    </div>
+</div>

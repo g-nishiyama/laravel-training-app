@@ -10,7 +10,7 @@
     {{--  @includeディレクティブ　切り分けたサブビュー(articlesフォルダのform.blade.php)を読み込み  --}}
     @include('articles.form')
     {{--  投稿ボタンを表示　送信先は<form>のaction要素に記載した{{ route('articles.store') }}  --}}
-    <button type="submit">投稿する</button>
+    <button type="submit" class="btn btn-primary">投稿する</button>
     {{--  キャンセルリンクを表示　遷移先は一覧ページ(web.phpに設定されたルーティングarticles.index(ArticleControllerのindexメソッド))  --}}
     <a href="{{ route('articles.index') }}">キャンセル</a>
 </form>

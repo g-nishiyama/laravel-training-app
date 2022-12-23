@@ -16,7 +16,7 @@
     {{--  @includeディレクティブ　切り分けたサブビュー(articlesフォルダのform.blade.php)を読み込み  --}}
     @include('articles.form')
     {{--  更新ボタンを表示　送信先は<form>のaction要素に記載した{{ route('articles.update') }}  --}}
-    <button type="submit">更新する</button>
+    <button type="submit" class="btn btn-primary">更新する</button>
     {{--  キャンセルリンクを表示　遷移先は一覧ページ(web.phpに設定されたルーティングarticles.show(ArticleControllerのshowメソッド))  --}}
     <a href="{{ route('articles.show', $article) }}">キャンセル</a>
 </form>
