@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreArticleRequest;
+use App\Http\Requests\UpdateArticleRequest;
 
 class ArticleController extends Controller
 {
@@ -44,16 +46,8 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
-        // 引用元：「4.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-4
-        // バリデーションチェック(storeアクションに渡された$requestに格納されている値が定義に合っていることを確認する)
-        $this->validate($request, [
-            // チェック項目としてtitleが未入力ではないこと、最大文字数は255文字以内であることを定義
-            'title' => 'required|max:255',
-            // チェック項目としてbodyは未入力ではないことを定義
-            'body' => 'required'
-        ]);
         // Articleクラスをインスタンス化
         $article = new Article();
         // 引用元：「8.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-8
@@ -112,19 +106,11 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(UpdateArticleRequest $request, Article $article)
     {
         // 引用元：「8.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-8
         // アクセス権限ポリシーを適用
         $this->authorize($article);
-        // 引用元：「5.記事の詳細と編集」https://newmonz.jp/lesson/laravel-basic/chapter-5
-        // バリデーションチェック(updateアクションに渡された$requestに格納されている値が定義に合っていることを確認する)
-        $this->validate($request, [
-            // チェック項目としてtitleが未入力ではないこと、最大文字数は255文字以内であることを定義
-            'title' => 'required|max:255',
-            // チェック項目としてbodyは未入力ではないことを定義
-            'body' => 'required'
-        ]);
         // $articleのプロパティtitleにフォームから送信されたtitleの値を代入
         $article->title = $request->title;
         // $articleのプロパティbodyにフォームから送信されたbodyの値を代入
