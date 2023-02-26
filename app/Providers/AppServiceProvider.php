@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind('App\Services\ArticleService');
         $this->app->bind('App\Services\BookmarkService');
+        $this->app->bind('App\Services\HomeService');
     }
 
     /**
