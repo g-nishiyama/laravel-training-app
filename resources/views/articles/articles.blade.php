@@ -3,6 +3,13 @@
 <div class="article-container">
     @foreach ($articles as $article)
     <div class="card article-card">
+        {{--  サムネイル画像表示  --}}
+        @if(empty($article->image_path))
+            <img class="image-height" src="{{ asset('img/no-image.png') }}" alt="no-image">
+        @else
+            <img class="thumbnail image-height" src="storage/img/{{$article->image_path}}" alt="{{$article->name}}">
+        @endif
+
         <article class="article-item">
             {{--  タイトルリンク表示　遷移先は詳細画面(articles.show)  --}}
             <div class="article-title"><a href="{{ route('articles.show', $article) }}">{{ $article->title }}</a></div>

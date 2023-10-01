@@ -20,3 +20,11 @@
         <textarea class="form-control" id="FormControlBody" name="body" rows="5">{{ old('body', $article->body) }}</textarea>
     </div>
 </div>
+<div>
+    @if (!empty($article->image_path))
+        <img class="image-height" id="viewImage" src="{{ asset('storage/img/' .old('image_path', $article->image_path)) }}">
+    @else
+        <img class="image-height" id="viewImage" src="{{ asset('img/no-image.png') }}">
+    @endif
+    <input type="file" name="image" id="inputImage" accept="image/png, image/jpeg, image/gif" value="{{ old('book_min_price') }}">
+</div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Services\ArticleService;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -109,7 +110,9 @@ class ArticleController extends Controller
         // 引用元：「8.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-8
         // アクセス権限ポリシーを適用
         $this->authorize($article);
-        $articleService->destroy($article);
+        if(Storage::delete("public/storage/img/".$article->image_path)){
+            $articleService->destroy($article);
+        }
         // ルートarticles.indexへリダイレクト
         return redirect(route('articles.index'));
     }

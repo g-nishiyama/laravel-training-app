@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="/main.css">
     {{--  readmore機能用JSファイイル読み込み  --}}
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="{{ asset('/js/readmore.js') }}"></script>
     {{--  ニコモジフォント導入  --}}
     <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
     {{--  fontawesome導入  --}}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     {{--  vite.config.jsで'resources/css/app.css'を追加したのでそこからCSSを読み込む  --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{--  image_view.jsの読み込み  --}}
+    @vite('resources/js/image_view.js')
 </head>
 <body>
     <header class="mb-5">

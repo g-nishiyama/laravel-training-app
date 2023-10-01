@@ -6,7 +6,7 @@
 {{--  @includeディレクティブ　切り分けたサブビュー(commonsフォルダのerrors.blade.php)を読み込み  --}}
 @include('commons.errors')
 {{--  フォーム入力内容をweb.phpに設定されたルーティングarticles.update(ArticleControllernのupdateメソッド)へPOSTメソッドで送信する  --}}
-<form action="{{ route('articles.update', $article) }}" method="post">
+<form action="{{ route('articles.update', $article) }}" method="post" enctype="multipart/form-data">
     {{--  methodディレクティブ HTML構文ではmethod属性にpostかgetしか指定出来ないようになっているため、
           methodディレクティブを記述することで隠しパラメータとしてtype属性がhiddenのinputが作成される。
 　          <input type="hidden" name="_method" value="patch">

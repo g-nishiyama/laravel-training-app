@@ -6,7 +6,7 @@
 {{--  @includeディレクティブ　切り分けたサブビュー(commonsフォルダのerrors.blade.php)を読み込み  --}}
 @include('commons.errors')
 {{--  フォーム入力内容をweb.phpに設定されたルーティングarticles.store(ArticleControllernのstoreメソッド)へPOSTメソッドで送信する  --}}
-<form action="{{ route('articles.store') }}" method="post">
+<form action="{{ route('articles.store') }}" method="post" enctype="multipart/form-data">
     {{--  @includeディレクティブ　切り分けたサブビュー(articlesフォルダのform.blade.php)を読み込み  --}}
     @include('articles.form')
     {{--  投稿ボタンを表示　送信先は<form>のaction要素に記載した{{ route('articles.store') }}  --}}

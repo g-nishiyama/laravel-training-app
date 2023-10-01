@@ -101,3 +101,6 @@ header nav ul li a.active {
     text-align: center;
     color: #fff;
 }
+.image-height {
+    height: 250px;
+}

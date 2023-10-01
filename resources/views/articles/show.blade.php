@@ -8,6 +8,14 @@
     <h1 class="article-title">{{ $article->title }}</h1>
     {{--  $articleのcreated_atキーの値を表示  --}}
     <div class="article-info">{{ $article->created_at }}</div>
+
+    {{--  画像表示  --}}
+    @if(empty($article->image_path))
+        <img class="image-height" src="{{ asset('img/no-image.png') }}" alt="no-image">
+    @else
+        <img class="image-height" src="/storage/img/{{$article->image_path}}">
+    @endif
+
     {{--  $articleのbodyキーの値を表示
           １、e() 関数で入力値をエスケープ処理し、改行コードを先にただの文字として表示（htmlspecialchars() を短く書くためのLaravelのヘルパー関数）
                 例「こんにちは(改行コード)さようなら」
