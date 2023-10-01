@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/main.css">
+    {{--  fontawesome導入  --}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     {{--  vite.config.jsで'resources/css/app.css'を追加したのでそこからCSSを読み込む  --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

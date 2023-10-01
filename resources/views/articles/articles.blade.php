@@ -15,7 +15,7 @@
         <form action="{{ route('bookmark.store', $article) }}" method="post">
             @csrf
             {{--  <button>お気に入り登録</button>  --}}
-            <button class="btn btn-primary">お気に入り登録</button>
+            <button class="btn btn-primary"><i class="fas fa-star"></i>お気に入り登録</button>
         </form>
         @else
         {{--  お気に入り解除ボタン表示（ブックマーク削除処理）  --}}
@@ -23,7 +23,7 @@
             @csrf
             {{--  @methodディレクティブ 隠しパラメータでdeleteメソッドを送信  --}}
             @method('delete')
-            <button class="btn btn-outline-primary">お気に入り解除</button>
+            <button class="btn btn-outline-primary"><i class="fas fa-star"></i>お気に入り解除</button>
         </form>
         @endif
     </div>
