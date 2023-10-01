@@ -28,3 +28,6 @@
 > npm run dev
 
 3.XAMPPでMySQLを起動する
+
+4.publicディレクトリと/storage/appの間にシンボリックリンクを張る（画像保存フォルダと公開フォルダの共有）
+> php artisan storage:link
