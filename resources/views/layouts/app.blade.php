@@ -16,6 +16,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{--  image_view.jsの読み込み  --}}
     @vite('resources/js/image_view.js')
+    {{--  readmore.jsの読み込み  --}}
+    @vite('resources/js/readmore.js')
 </head>
 <body>
     <header class="mb-5">

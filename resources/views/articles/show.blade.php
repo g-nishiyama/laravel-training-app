@@ -25,7 +25,8 @@
                 例「こんにちは
                     さようなら」
       --}}
-    <div class="article-body">{!! nl2br(e($article->body)) !!}</div>
+    <div class="article-body" id="read_text">{!! nl2br(e($article->body)) !!}</div>
+
     {{--  引用元：「8.記事の投稿」https://newmonz.jp/lesson/laravel-basic/chapter-8  --}}
     {{--  canディレクティブ　この記事のupdateポリシーがtrueの場合に以降を表示する  --}}
     @can('update', $article)
@@ -45,4 +46,17 @@
     </div>
     @endcan
 </article>
+
+{{--  readmoreの実装  --}}
+<script>
+$(function () {
+    $('#read_text').readmore({
+        speed: 700,
+        collapsedHeight: 65,
+        moreLink: '<div class="text-center"><button type="#" class="btn btn-primary">続きを読む</a></div>',
+        lessLink: '<div class="text-center"><button type="#" class="btn btn-primary">閉じる</a></div>'
+    });
+});
+</script>
+
 @endsection
